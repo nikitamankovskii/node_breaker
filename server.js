@@ -47,7 +47,7 @@ function generate_dummy_data(max){
   // here we check max is defined and positive.
   // if not we put a default value of 5
   let data = [];
-  max = (typeof max === 'undefined' || max <= 0) ? 5 : max;
+  max = (typeof max === 'undefined' || max <= 0) ? 5 : parseInt(max);
   for (let i = 0; i < max; i++) {
     data.push({
       id: i,

@@ -1,6 +1,6 @@
 ## Contain small server and client
 
-[server.js](server.js) - server, that have few APIs.
+[server.js](server.js) - server, that have few endpoints.
 
 [client.js](client.js) - client, that sends some requests.
 
