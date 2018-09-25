@@ -18,3 +18,10 @@ http://127.0.0.1:8888/data/{id} - *id* of then data
 
 http://127.0.0.1:8888/date - return current Date
 
+## Installation
+
+`npm install`
+
+To run server: `node server.js`
+
+To run client: `node client.js`
