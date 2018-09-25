@@ -23,7 +23,7 @@ var data = [
 ]
 //main page
 app.get('/', function(req, res){
-  res.send('server in runed.');
+  res.send('server is runing');
 });
 //to see data
 app.get('/data', function(req, res){
