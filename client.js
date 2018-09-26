@@ -1,28 +1,26 @@
 const request = require('request');
-const Promise = require('promise');
+const sleep = require('sleep');
 
 function send_request(url){
-
-   request(url, function (error, response, body) {
-      if (error!== null){
-        console.log('error:', error);
-      }
-      else {
-        console.log('Request number : '+body);
-        return body;
-      }
-    });
-
-};
-
+  return request(url, {timeout: 5000}, function (error, response, body) {
+    if (error!==null){console.log('error:', error);} // Print the error if one occurred
+    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+    console.log('body:', body); // Print the HTML for the Google homepage.
+  });
+}
 const host = 'http://127.0.0.1:8888/'
+
 var max = 50
-let index = ''
 for (let i = 0; i < max; i++){
-  if (i%5===0){
-    index = send_request(host+'sleep/3');
-    console.log( 'Request number ' + i + ': ' + index )}// this muast wait upper line
-  else {
-    index = send_request(host+'data/'+i)
-    console.log( 'Request number ' + i + ': ' + index)};
+  setTimeout(() => {
+    console.log("HERE " + i);
+    send_request(host+'data/'+i)
+  }, 1)//getRandomInt(10)*1000);
+  //if (i%5===0){
+  //  send_request(host+'sleep/3');
+  //}
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
 }

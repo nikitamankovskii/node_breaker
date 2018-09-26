@@ -20,12 +20,20 @@ app.get('/data/:id', function(req, res){
   // this is correct, we could have created a data which is an object (like a dict in python) instead of an array
   // so we wouldn't have to go through the entire array to find our id.
   // but this is correct since most real world example will be about arrays coming from the database.
+  let i = req.params.id;
   let data_user = data.find(function (data){
     // https://stackoverflow.com/questions/4564158/what-is-the-difference-between-parseintstring-and-numberstring-in-javascript
     return data.id === parseInt(req.params.id) // changed here for ParseInt because it's more flexible to find numbers.
   });
-  res.send(data_user);
+  setTimeout(() => {
+    res.send(data_user);
+  }, getTimeToWait(i))
 });
+//
+function getTimeToWait(i){
+  if (i%5==0){console.log(i+' break'); return 7500;
+} else {console.log(i); return 2500; };
+};
 //to get data_user
 app.get('/date', function(req, res){
   res.send(Date());
