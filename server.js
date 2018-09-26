@@ -5,7 +5,7 @@ const port = 8888;
 
 // let's generate ou data array since it contains predictable objects.
 // Software engineers are lazy beast, that's why they are smart, avoid manual tasks as much as possible
-var data = generate_dummy_data(10);
+var data = generate_dummy_data(50);
 
 //main page
 app.get('/', function(req, res){

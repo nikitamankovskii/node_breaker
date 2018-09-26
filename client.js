@@ -1,23 +1,28 @@
-const http = require('http');
+const request = require('request');
+const Promise = require('promise');
 
 function send_request(url){
-  http.get(url,(res) =>{
-    let data = '';
-    res.on('data', (chunk) => {
-      data += chunk;
+
+   request(url, function (error, response, body) {
+      if (error!== null){
+        console.log('error:', error);
+      }
+      else {
+        console.log('Request number : '+body);
+        return body;
+      }
     });
-    res.on('end', () => {
-      console.log(data);
-    });
-    return data;
-    // added the listener on errors, you could have a problem to reach the server itself, you want to know about it. 
-    // Will save you time during debugging
-  }).on('error', (err) => {
-    console.error("Error: "+ err.message);
-  });
-}
+
+};
 
 const host = 'http://127.0.0.1:8888/'
-console.log(send_request(host+'data'))
-console.log(send_request(host+'sleep/5'))
-console.log(send_request(host+'data'))
+var max = 50
+let index = ''
+for (let i = 0; i < max; i++){
+  if (i%5===0){
+    index = send_request(host+'sleep/3');
+    console.log( 'Request number ' + i + ': ' + index )}// this muast wait upper line
+  else {
+    index = send_request(host+'data/'+i)
+    console.log( 'Request number ' + i + ': ' + index)};
+}
