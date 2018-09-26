@@ -5,7 +5,7 @@ function send_request(url){
   return request(url, {timeout: 5000}, function (error, response, body) {
     if (error!==null){console.log('error:', error);} // Print the error if one occurred
     console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-    console.log('body:', body); // Print the HTML for the Google homepage.
+    console.log('body:', body); // Print user data
   });
 }
 const host = 'http://127.0.0.1:8888/'
@@ -15,12 +15,4 @@ for (let i = 0; i < max; i++){
   setTimeout(() => {
     console.log("HERE " + i);
     send_request(host+'data/'+i)
-  }, 1)//getRandomInt(10)*1000);
-  //if (i%5===0){
-  //  send_request(host+'sleep/3');
-  //}
-}
-
-function getRandomInt(max) {
-  return Math.floor(Math.random() * Math.floor(max));
-}
+  }, 1) //use in debugging

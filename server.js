@@ -29,7 +29,7 @@ app.get('/data/:id', function(req, res){
     res.send(data_user);
   }, getTimeToWait(i))
 });
-//
+// choose requests for evoke "not responding"
 function getTimeToWait(i){
   if (i%5==0){console.log(i+' break'); return 7500;
 } else {console.log(i); return 2500; };
@@ -37,13 +37,6 @@ function getTimeToWait(i){
 //to get data_user
 app.get('/date', function(req, res){
   res.send(Date());
-});
-// make server sleep
-app.get('/sleep/:seconds', function(req, res){
-  let time_to_sleep = parseInt(req.params.seconds)*1000;
-  // no need to redefine msleep since it's inside the "sleep" package you installed
-  sleep.msleep(time_to_sleep)
-  res.send('was spleeping - '+time_to_sleep+'ms');
 });
 
 app.listen(port, () =>{
