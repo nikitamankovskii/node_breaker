@@ -31,8 +31,14 @@ app.get('/data/:id', function(req, res){
 });
 // choose requests for evoke "not responding"
 function getTimeToWait(i){
-  if (i%5==0){console.log(i+' break'); return 7500;
-} else {console.log(i); return 2500; };
+  if (i%10==0 || i%10==1 || i%10==2){
+    console.log(i+' break');
+    return 7500;
+  }
+  else {
+    console.log(i);
+    return 2500;
+  };
 };
 //to get data_user
 app.get('/date', function(req, res){
