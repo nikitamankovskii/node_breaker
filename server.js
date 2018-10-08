@@ -33,7 +33,7 @@ app.get('/data/:id', function(req, res){
 function getTimeToWait(i){
   if (i%10==7 || i%10==8 || i%10==9){
     console.log(i+' break');
-    return 25000;
+    return 5000;
   }
   else {
     console.log(i);

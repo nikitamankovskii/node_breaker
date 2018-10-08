@@ -4,7 +4,13 @@ var client_cb = require( "./client_cb.js" );
 num_of_packets=50
 
 var client = new client_cb(num_of_packets);
-var client_circute = CircuitBreakerFactory.create();
+var client_circute = CircuitBreakerFactory.create(
+	requestTimeout: 5000;
+	failureTheshold: 0;
+	isFailure: finction( error ) {
+		return (! is404(error));
+	}
+);
 var chain = Promise.resolve();
 
 const host = 'http://127.0.0.1:8888/'
@@ -19,6 +25,7 @@ for ( let i = 0 ; i < num_of_packets ; i++ ) {
 					( result ) => {
 
 						console.log( "[%s] -> Success: %s", i, result );
+						console.log("here "result);
 						return result
 					},
 					( error ) => {
@@ -30,7 +37,8 @@ for ( let i = 0 ; i < num_of_packets ; i++ ) {
 			;
 
 		}
+		console.log('data :'+data);
 	);
-	console.log('data :'+data)
+
 
 }

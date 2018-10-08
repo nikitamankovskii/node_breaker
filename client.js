@@ -9,17 +9,17 @@ class client {
 
   async send_request_async(url){
     try{
-
-      console.log('before fetch '+url)
-      let response = await fetch(url);
-      console.log('after fetch')
-      let data = await response.json();
-      console.log(data)
-      console.log('after json')
-      return data;
+      const fetch = require('node-fetch');
+      //console.log('before fetch '+url)
+      let resp = await fetch(url);
+      //console.log('after fetch')
+      let data = await resp.json();
+      //console.log(data)
+      //console.log('after json')
+      return JSON.stringify(data);
 
     } catch(error){
-        throw new Error ('unable to get data');
+        throw new Error ('unable to get data :'+error);
     }
   }
 
