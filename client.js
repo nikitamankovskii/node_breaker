@@ -1,18 +1,36 @@
-const request = require('request');
-const sleep = require('sleep');
+class client {
 
-function send_request(url){
-  return request(url, {timeout: 5000}, function (error, response, body) {
-    if (error!==null){console.log('error:', error);} // Print the error if one occurred
-    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-    console.log('body:', body); // Print user data
-  });
+  constructor() {
+    const fetch = require('node-fetch');
+    const num_of_packets = 50;
+    const host = 'http://127.0.0.1:8888/';
+  }
+
+
+  async send_request_async(url){
+    try{
+
+      console.log('before fetch '+url)
+      let response = await fetch(url);
+      console.log('after fetch')
+      let data = await response.json();
+      console.log(data)
+      console.log('after json')
+      return data;
+
+    } catch(error){
+        throw new Error ('unable to get data');
+    }
+  }
+
+
+  async main(){
+    console.log('in main')
+    for (let i=0; i<this.num_of_packets; i++){
+        var response = this.send_request_async(`${host}data/${i}`)
+          .then(response => console.log(response));
+    }
+  }
 }
-const host = 'http://127.0.0.1:8888/'
 
-var max = 50
-for (let i = 0; i < max; i++){
-  setTimeout(() => {
-    console.log("HERE " + i);
-    send_request(host+'data/'+i)
-  }, 1) //use in debugging
+module.exports = client;

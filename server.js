@@ -31,9 +31,9 @@ app.get('/data/:id', function(req, res){
 });
 // choose requests for evoke "not responding"
 function getTimeToWait(i){
-  if (i%10==0 || i%10==1 || i%10==2){
+  if (i%10==7 || i%10==8 || i%10==9){
     console.log(i+' break');
-    return 7500;
+    return 25000;
   }
   else {
     console.log(i);
