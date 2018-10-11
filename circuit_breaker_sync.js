@@ -18,10 +18,9 @@ loop();
 async function loop(){
   for ( let i = 0 ; i < num_of_packets ; i++ ) {
 		console.log("loop "+i)
-		let data = await senddata();}
+		let data = await senddata(i);}
 }
-async function senddata(){
-	let i = 0
+async function senddata(i){
 	let	data = await client_circute
 				.executeMethod( client, "send_request_async", [`${host}data/${i}`] )
 				.then(
