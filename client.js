@@ -1,5 +1,11 @@
 class client {
 
+  constructor() {
+    const fetch = require('node-fetch');
+    const num_of_packets = 50;
+    const host = 'http://127.0.0.1:8888/';
+  }
+
 
   async send_request_async(url){
     try{
