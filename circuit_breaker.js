@@ -19,11 +19,10 @@ class CircuitBreaker{
 	async send_request_cb(){
 		var chain = Promise.resolve();
 		var method_name = arguments[0];
-		var args = Array.from(arguments);
-	  args.shift();
-		console.log(method_name);
-		console.log(args);
-		console.log(this.client)
+		var args = Array.from(arguments).args.shift();
+		console.log(method_name);// for debug
+		console.log(args);// for debug
+		console.log(this.client)// for debug
 		var data = await chain.then( async () => {
 				promise = await this.client_circute
 				// link to the function, that make request
@@ -35,7 +34,7 @@ class CircuitBreaker{
 							return result
 						},
 						( error ) => {
-							console.log( "[%s] ->\t   Error: %s", 1, error );
+							console.log( "[%s] ->\t   Error: %s", 1, error );// for debug
 							return error;
 						}
 					);
