@@ -1,5 +1,5 @@
 var CircuitBreakerFactory = require( "@bennadel/circuit-breaker" ).CircuitBreakerFactory;
-var client = require( "./client.js" );
+const client = require( "./client.js" );
 
 num_of_packets=50
 
